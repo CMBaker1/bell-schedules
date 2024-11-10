@@ -14,7 +14,7 @@
     <script>  
         console.log("Script loaded successfully");  
   
-        const playTimes = ["08:32", "09:02", "09:54", "10:46", "11:38", "12:30", "12:59", "13:52", "14:43", "12:06"]; // Include all times  
+        const playTimes = ["08:32", "09:02", "09:54", "10:46", "11:38", "12:30", "12:59", "13:01:55", "13:52", "14:43", "12:06"]; // Include all times  
   
         function checkTimeAndPlay() {  
             const now = new Date();  
@@ -35,12 +35,8 @@
   
         function startChecking() {  
             checkTimeAndPlay(); // Initial check  
-            const now = new Date();  
-            const delay = (15 - (now.getSeconds() % 15)) * 1000; // Delay until the next 15-second mark  
-            setTimeout(() => {  
-                setInterval(checkTimeAndPlay, 15000); // Check every 15 seconds  
-                console.log("Schedule started");  
-            }, delay);  
+            setInterval(checkTimeAndPlay, 1000); // Check every second  
+            console.log("Schedule started");  
         }  
   
         // Add event listener to button to start schedule  
