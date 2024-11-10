@@ -1,0 +1,28 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Scheduled Sound Alert</title>  
+</head>  
+<body>  
+    <audio id="sound" src="https://drive.google.com/file/d/18a4kqTXxNDrOFPOqsAUZcpgeg4I7jPSZ/view?usp=sharing" preload="auto"></audio>  
+  
+    <script>  
+        // Define the times for the first day's schedule  
+        const playTimes = ["08:32", "09:02", "09:54", "10:35", "10:46", "11:38", "12:30", "12:59", "13:52", "14:43"];  
+  
+        function checkTimeAndPlay() {  
+            const now = new Date();  
+            const currentTime = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0');  
+  
+            if (playTimes.includes(currentTime)) {  
+                document.getElementById('sound').play();  
+            }  
+        }  
+  
+        // Check every minute  
+        setInterval(checkTimeAndPlay, 60000);  
+    </script>  
+</body>  
+</html>  
