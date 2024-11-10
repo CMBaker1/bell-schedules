@@ -15,7 +15,7 @@
         console.log("Script loaded successfully");  
   
         // Define the times with seconds for precise scheduling  
-        const playTimes = ["08:32:00", "09:02:00", "09:54:00", "10:08:00", "10:46:00", "11:38:00", "12:30:00", "12:59:00", "13:52:00", "14:43:00", "14:52:00"]; // Include all times with precise seconds  
+        const playTimes = ["08:32:00", "09:02:00", "09:54:00", "10:08:00", "10:46:00", "11:38:00", "12:30:00", "12:59:00", "13:52:00", "14:43:00", "14:59:00"]; // Include all times with precise seconds  
   
         function checkTimeAndPlay() {  
             const now = new Date();  
@@ -23,6 +23,7 @@
                                 now.getMinutes().toString().padStart(2, '0') + ":" +   
                                 now.getSeconds().toString().padStart(2, '0');  
             console.log("Current time checked:", currentTime);  
+            console.log("Expected play times:", playTimes);  
   
             if (playTimes.includes(currentTime)) {  
                 console.log("Attempting to play sound at:", currentTime);  
