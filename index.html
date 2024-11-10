@@ -14,11 +14,14 @@
     <script>  
         console.log("Script loaded successfully");  
   
-        const playTimes = ["08:32", "09:02", "09:54", "10:46", "11:38", "12:30", "12:59", "13:05:00", "13:52", "14:43", "12:06"]; // Include all times  
+        // Define the times with seconds for precise scheduling  
+        const playTimes = ["08:32:00", "09:02:00", "09:54:00", "10:46:00", "11:38:00", "12:00:00", "12:30:00", "12:59:00", "13:21:00", "13:52:00", "14:43:00", "13:01:55"]; // Include all times with precise seconds  
   
         function checkTimeAndPlay() {  
             const now = new Date();  
-            const currentTime = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0');  
+            const currentTime = now.getHours().toString().padStart(2, '0') + ":" +   
+                                now.getMinutes().toString().padStart(2, '0') + ":" +   
+                                now.getSeconds().toString().padStart(2, '0');  
             console.log("Current time checked:", currentTime);  
   
             if (playTimes.includes(currentTime)) {  
