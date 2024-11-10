@@ -14,37 +14,37 @@
     <script>  
         console.log("Script loaded successfully");  
   
-        // Define the times for the first day's schedule  
-        const playTimes = ["08:32", "09:02", "09:54", "10:46", "11:38", "12:15", "12:30", "12:59", "13:52", "14:43", "12:06"]; // Add test time for immediate testing  
-  
-        let lastCheckedMinute = null;  
+        const playTimes = ["08:32", "09:02", "09:54", "10:46", "11:38", "12:16", "12:30", "12:59", "13:52", "14:43", "12:06"]; // Include all times  
   
         function checkTimeAndPlay() {  
             const now = new Date();  
             const currentTime = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0');  
+            console.log("Current time checked:", currentTime);  
   
-            if (now.getMinutes() !== lastCheckedMinute) {  
-                lastCheckedMinute = now.getMinutes();  
-                console.log("Current time checked:", currentTime);  
-  
-                if (playTimes.includes(currentTime)) {  
-                    console.log("Attempting to play sound at:", currentTime);  
-                    document.getElementById('sound').play().then(() => {  
-                        console.log("Sound played successfully at:", currentTime);  
-                    }).catch(error => {  
-                        console.error("Playback failed:", error);  
-                    });  
-                } else {  
-                    console.log("Current time not a play time:", currentTime);  
-                }  
+            if (playTimes.includes(currentTime)) {  
+                console.log("Attempting to play sound at:", currentTime);  
+                document.getElementById('sound').play().then(() => {  
+                    console.log("Sound played successfully at:", currentTime);  
+                }).catch(error => {  
+                    console.error("Playback failed:", error);  
+                });  
+            } else {  
+                console.log("Current time not a play time:", currentTime);  
             }  
         }  
   
+        function startChecking() {  
+            checkTimeAndPlay(); // Initial check  
+            const now = new Date();  
+            const delay = (60 - now.getSeconds()) * 1000; // Delay until the next minute  
+            setTimeout(() => {  
+                setInterval(checkTimeAndPlay, 60000); // Check every minute on the minute  
+                console.log("Schedule started");  
+            }, delay);  
+        }  
+  
         // Add event listener to button to start schedule  
-        document.getElementById('startButton').addEventListener('click', function() {  
-            setInterval(checkTimeAndPlay, 1000);  
-            console.log("Schedule started");  
-        });  
+        document.getElementById('startButton').addEventListener('click', startChecking);  
     </script>  
 </body>  
 </html>  
