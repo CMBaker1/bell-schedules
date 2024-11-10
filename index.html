@@ -10,7 +10,7 @@
   
     <script>  
         // Define the times for the first day's schedule  
-        const playTimes = ["08:32", "09:02", "09:54", "10:46", "11:38", "12:00", "12:30", "12:59", "13:52", "14:43"];  
+        const playTimes = ["08:32", "09:02", "09:54", "10:46", "11:38", "12:15", "12:30", "12:59", "13:52", "14:43"];  
   
         function checkTimeAndPlay() {  
             const now = new Date();  
@@ -18,15 +18,19 @@
             console.log("Current time checked:", currentTime);  
   
             if (playTimes.includes(currentTime)) {  
-                console.log("Playing sound at:", currentTime);  
-                document.getElementById('sound').play().catch(error => {  
+                console.log("Attempting to play sound at:", currentTime);  
+                document.getElementById('sound').play().then(() => {  
+                    console.log("Sound played successfully at:", currentTime);  
+                }).catch(error => {  
                     console.error("Playback failed:", error);  
                 });  
+            } else {  
+                console.log("Current time not a play time:", currentTime);  
             }  
         }  
   
         // Check every minute  
-       setInterval(checkTimeAndPlay, 60000);  
+        setInterval(checkTimeAndPlay, 60000);  
     </script>  
 </body>  
 </html>  
